@@ -1,0 +1,116 @@
+//somme des elements distincts
+/*ALGORITHM Distinct
+VAR
+    tab : ARRAY_OF INTEGER[n];
+    tab1 : ARRAY_OF INTEGER[m];
+    sum ,i,j:INTEGER;
+BEGIN
+    sum:=0;
+    FOR i FROM 0 TO n-1 STEP step  DO
+    FOR j FROM 0 TO m-1 STEP step  DO
+        IF (tab[i]<>tab1[j]) THEN
+            sum:=sum+1;
+        END_IF
+    END_FOR
+    END_FOR 
+    write(sum)
+END*/
+//2eme solution
+/*ALGORITHM table de hachage
+VAR
+    setOne: ARRAY_OF INTEGER[].
+    setTwo: ARRAY_OF INTEGER[];
+    i, sum:INTEGER;
+BEGIN
+    write("Set 1: " + Arrays.toString(setOne) + ", Set 2: " + Arrays.toString(setTwo));
+    Map<Integer, Integer> map = new HashMap<>();
+
+        
+            FOR i FROM 0 TO setone.lenth STEP step  DO
+            element:INTEGER := setOne[i];
+            IF (map.containsKey(element)) THEN
+                count:INTEGER :=map.get(element);
+                map.put(element,count+1)
+            ELSE
+                map.put(element, 1);
+            END_IF
+            END_FOR
+        FOR i FROM 0 TO setTwo.length STEP step  DO
+            element:INTEGER := setTwo[i];
+            IF (map.containsKey(element)) THEN
+                count: INTEGER :=map.get(element);
+            ELSE
+                map.put(element, 1);
+            END_IF
+        END_FOR     
+
+        //get sum of distinct elements
+        sum := 0;
+        Set<Integer> set = map.keySet();
+        Iterator<Integer> iterator = set.iterator();
+        WHILE (iterator.hasNext()) DO
+            key: INTEGER := iterator.next();
+            IF (map.get(key)==1) THEN
+                sum:=sum+key;
+            END_IF
+        END_WHILE
+        write("Distinct Elements Sum : " + sum);
+END*/
+//somme des elements qui se chevauchent
+/*ALGORITHM Distinct
+VAR
+    tab : ARRAY_OF INTEGER[n];
+    tab1 : ARRAY_OF INTEGER[m];
+    sum ,i,j:INTEGER;
+BEGIN
+    sum:=0;
+    FOR i FROM 0 TO n-1 STEP step  DO
+    FOR j FROM 0 TO m-1 STEP step  DO
+        IF (tab[i]==tab1[j]) THEN
+            sum:=sum+1;
+        END_IF
+    END_FOR
+    END_FOR 
+    write(sum)
+END*/
+ALGORITHM table de hachage
+VAR
+    setA: ARRAY_OF INTEGER[].
+    setB: ARRAY_OF INTEGER[];
+    i, sum:INTEGER;
+BEGIN
+    write("Set 1: " + Arrays.toString(setA) + ", Set 2: " + Arrays.toString(setB));
+    Map<Integer, Integer> map = new HashMap<>();
+
+        
+            FOR i FROM 0 TO setA.lenth STEP step  DO
+            element:INTEGER := setA[i];
+            IF (map.containsKey(element)) THEN
+                count:INTEGER :=map.get(element);
+                map.put(element,count+1)
+            ELSE
+                map.put(element, 1);
+            END_IF
+            END_FOR
+        FOR i FROM 0 TO setB.length STEP step  DO
+            element:INTEGER := setB[i];
+            IF (map.containsKey(element)) THEN
+                count: INTEGER :=map.get(element);
+            ELSE
+                map.put(element, 1);
+            END_IF
+        END_FOR     
+
+        //get sum of overlapping elements
+        sum := 0;
+        Set<Integer> set = map.keySet();
+        Iterator<Integer> iterator := set.iterator();
+        WHILE (iterator.hasNext()) DO
+            key: INTEGER:=iterator.next();
+            count:INTEGER :=map.get(key);
+            IF (count==2) THEN
+                sum:= sum+key*count;
+            END_IF
+        END_WHILE
+        write("Sum of overlapping elements: " + sum);
+END
