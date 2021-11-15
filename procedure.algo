@@ -1,0 +1,23 @@
+FUNCTION dot_product((VAR vector1, vector2: ARRAY_OF INTEGER) : INTEGER
+VAR
+    i: INTEGER;
+    ps:INTEGER:=0;
+BEGIN
+    FOR i FROM 0 TO i<vector1.length-1 STEP step  DO
+        ps:=ps+vector1[i]*vector2[i];
+    END_FOR
+    RETURN ps ;
+END 
+ALGORITHM orthogonaux
+VAR
+    i, j:INTEGER;
+    vectors: ARRAY_OF INTEGER[][];
+BEGIN
+    FOR i FROM 0 TO i<vectors.length-1 STEP step  DO
+    FOR j FROM i+1 TO j<vectors.length-1 STEP step  DO
+        IF (dot_Product(vectors[i], vectors[j]) === 0) THEN
+            write(orthogonal)
+        END_IF
+    END_FOR
+    END_FOR
+END
